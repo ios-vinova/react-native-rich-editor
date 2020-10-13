@@ -263,7 +263,7 @@ function createHTML(options = {}) {
                 if (action ){
                     if ( action[msgData.name]){
                         var flag = msgData.name === 'result';
-                        flag && focusCurrent();
+                        //flag && focusCurrent();
                         action[msgData.name](msgData.data);
                         flag && handler();
                     } else {
