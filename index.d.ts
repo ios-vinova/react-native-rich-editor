@@ -132,6 +132,14 @@ declare module 'react-native-pell-rich-editor' {
          */
         iconTint?: string;
         /**
+         * Action init when show toolbar
+         */
+        initAction?: string[];
+        /**
+         * Size of icon in toolbar
+         */
+        iconSize?: number;
+        /**
          * Color for disabled button Icon
          */
         disabledIconTint?: string;

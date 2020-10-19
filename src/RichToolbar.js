@@ -68,6 +68,8 @@ export default class RichToolbar extends Component {
         const {actions} = nextProps;
         if (actions !== prevState.actions) {
             let {selectedItems = []} = prevState;
+            selectedItems = selectedItems.length?selectedItems: nextProps.initAction || [];
+            
             return {
                 actions,
                 data: actions.map((action) => ({action, selected: selectedItems.includes(action)})),
