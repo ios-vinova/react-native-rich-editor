@@ -203,12 +203,26 @@ function createHTML(options = {}) {
             content.autocorrect = 'off';
             content.autocomplete = 'off';
             content.className = "pell-content";
+            // content.oninput = function (_ref) {
+            //     // var firstChild = _ref.target.firstChild;
+            //     // if (firstChild && firstChild.nodeType === 3) exec(formatBlock, '<' + defaultParagraphSeparator + '>');else if (content.innerHTML === '<br>') content.innerHTML = '';
+            //     settings.onChange(content.innerHTML);
+            //     saveSelection();
+            // };
+
             content.oninput = function (_ref) {
                 // var firstChild = _ref.target.firstChild;
                 // if (firstChild && firstChild.nodeType === 3) exec(formatBlock, '<' + defaultParagraphSeparator + '>');else if (content.innerHTML === '<br>') content.innerHTML = '';
+                var bold = queryCommandState('bold');
+                var italic = queryCommandState('italic');
+                var underline = queryCommandState('underline');
+                postAction({type: 'SELECTION_CHANGE', data: [
+                    bold ? 'bold' : undefined, italic ? 'italic': undefined, underline ? 'underline' : undefined
+                ]});
                 settings.onChange(content.innerHTML);
                 saveSelection();
             };
+            
             content.onkeydown = function (event) {
                 if (event.key === 'Enter' && queryCommandValue(formatBlock) === 'blockquote') {
                     setTimeout(function () {
